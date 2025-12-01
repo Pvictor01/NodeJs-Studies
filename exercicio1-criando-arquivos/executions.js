@@ -1,6 +1,6 @@
 /*​Crie um arquivo JavaScript que exporte, usando a sintaxe de ESModules, as 4 funções abaixo:
 uma função que deve criar um arquivo de texto chamado "meuarquivo.txt" no diretório atual contendo o texto informado como argumento. >>>OK
-uma função que deve reescrever o texto no arquivo "meuarquivo.txt" substituindo o conteúdo pelo texto informado no argumento.        
+uma função que deve reescrever o texto no arquivo "meuarquivo.txt" substituindo o conteúdo pelo texto informado no argumento.        >>>OK
 
 uma função que deve ler o conteúdo do arquivo "meuarquivo.txt" e exibi-lo no console.
 
@@ -24,3 +24,14 @@ export function createFile() {
   })
 }
 
+
+export function rewriteFile() {
+  fs.writeFile('./meuarquivo.txt', 'Novo dado alterado', (err) => {
+    if(err) {
+      console.log(`Erro ao escrever arquivo ${err.message}`)
+      return    
+    }
+
+    console.log(`func2 - Arquivo reescrito com sucesso!`)
+  })
+}
