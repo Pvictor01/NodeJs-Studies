@@ -2,10 +2,7 @@
 uma função que deve criar um arquivo de texto chamado "meuarquivo.txt" no diretório atual contendo o texto informado como argumento. >>>OK
 uma função que deve reescrever o texto no arquivo "meuarquivo.txt" substituindo o conteúdo pelo texto informado no argumento.        >>>OK
 uma função que deve ler o conteúdo do arquivo "meuarquivo.txt" e exibi-lo no console.                                                >>>OK
-uma função que deve excluir o arquivo "meuarquivo.txt" do sistema de arquivos.
-
-Depois de criar as funções você deve importá-las em um outro arquivo e executá-las para fins de teste de acordo com o exemplo abaixo:
-*/
+uma função que deve excluir o arquivo "meuarquivo.txt" do sistema de arquivos.                                                       >>>OK*/
 
 import fs from 'node:fs'
 
@@ -21,7 +18,6 @@ export function createFile() {
     console.log(`func1 - Arquivo criado com sucesso!`)
   })
 }
-
 
 export function rewriteFile() {
   fs.writeFile('./meuarquivo.txt', 'Novo dado alterado', (err) => {
