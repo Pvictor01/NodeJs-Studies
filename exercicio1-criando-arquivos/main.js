@@ -1,5 +1,6 @@
-import {createFile, rewriteFile, readFile} from './executions.js'
+import {createFile, rewriteFile, readFile, deleteFile} from './executions.js'
 
 createFile()
 rewriteFile()
 readFile()
+deleteFile()
