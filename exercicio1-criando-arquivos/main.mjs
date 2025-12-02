@@ -1,6 +1,11 @@
 import {createFile, rewriteFile, readFile, deleteFile} from './executions.mjs'
 
-createFile()
-rewriteFile()
-readFile()
-deleteFile()
+async function start() {
+  await createFile()
+  await readFile()
+  await rewriteFile()
+  await readFile()
+  await deleteFile()
+}
+
+start()

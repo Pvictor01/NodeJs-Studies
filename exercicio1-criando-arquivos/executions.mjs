@@ -9,45 +9,57 @@ import fs from 'node:fs'
 const fileData = 'Olá PV'
 
 export function createFile() {
-  fs.writeFile('./meuarquivo.txt', fileData, (err) => {
-    if(err) {
-      console.log(`Erro ao escrever arquivo ${err.message}`)
-      return    
-    }
-
-    console.log(`func1 - Arquivo criado com sucesso!`)
-  })
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./meuarquivo.txt', fileData, (err) => {
+      if(err) {
+        console.log(`Erro ao escrever arquivo ${err.message}`)
+        reject()    
+      } else {
+        console.log(`func1 - Arquivo criado com sucesso!`)
+        resolve()
+      }
+    })
+  }) 
 }
 
 export function rewriteFile() {
-  fs.writeFile('./meuarquivo.txt', 'Novo dado alterado', (err) => {
-    if(err) {
-      console.log(`Erro ao escrever arquivo ${err.message}`)
-      return    
-    }
-
-    console.log(`func2 - Arquivo reescrito com sucesso!`)
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./meuarquivo.txt', 'Novo dado alterado', (err) => {
+      if(err) {
+        reject(`Erro ao escrever arquivo ${err.message}`)
+      } else {
+        console.log(`func2 - Arquivo reescrito com sucesso!`)
+        resolve()
+      }
+    })
   })
 }
 
 export function readFile() {
-  fs.readFile('./meuarquivo.txt', 'utf-8', (err, data) => {
-    if(err) {
-      console.log(`Erro ao ler arquivo ${err.message}`);
-      return
-    }
-
-    console.log(`func3 - Arquivo lido com sucesso: ${data}`)
+  return new Promise((resolve, reject) => {
+    fs.readFile('./meuarquivo.txt', 'utf-8', (err, data) => {
+      if(err) {
+        console.log(`Erro ao ler arquivo ${err.message}`);
+        reject()
+      } else {
+        console.log(`func3 - Arquivo lido com sucesso: ${data}`)
+        resolve()
+      }
+    })
   })
+
 }
 
 export function deleteFile() {
-  fs.unlink('./meuarquivo.txt', (err) => {
-    if(err) {
-      console.log(`Erro ao deletar arquivo ${err.message}`)
-      return
-    }
-
-    console.log(`func4 - Arquivo deletado com sucesso!`)
+  return new Promise((resolve, reject) => {
+    fs.unlink('./meuarquivo.txt', (err) => {
+      if(err) {
+        console.log(`Erro ao deletar arquivo ${err.message}`)
+        resolve()
+      } else {
+        console.log(`func4 - Arquivo deletado com sucesso!`)
+        resolve()
+      }
+    })
   })
 }
