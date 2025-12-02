@@ -54,8 +54,7 @@ export function deleteFile() {
   return new Promise((resolve, reject) => {
     fs.unlink('./meuarquivo.txt', (err) => {
       if(err) {
-        console.log(`Erro ao deletar arquivo ${err.message}`)
-        resolve()
+        reject(`Erro ao deletar arquivo ${err.message}`)
       } else {
         console.log(`func4 - Arquivo deletado com sucesso!`)
         resolve()
