@@ -17,11 +17,10 @@ function showInfos() {
 function createFile() {
   setInterval(async () => {
     try {
-      await fs.appendFile('./log/log.txt', showInfos())
+      await fs.writeFile('./log/log.txt', showInfos())
       console.log('Arquivo atualizado com sucesso!')
     } catch (error) {
       console.error(`Erro ao criar arquivo: ${error.message}`)
-      throw error
     }
   }, 1000)
 }

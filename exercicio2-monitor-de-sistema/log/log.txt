@@ -2,8 +2,8 @@ Nome do sistema operacional: Darwin
 Arquitetura do sistema operacional: arm64 
 Modelo do processador: Apple M2 
 Total de memória RAM: 16 GB 
-Uso de memória RAM (%): 95% 
-Uso de memória do código: 4.20892 MB 
+Uso de memória RAM (%): 97% 
+Uso de memória do código: 4.10534 MB 
 Total de memória do código: 5.375 MB 
-Tempo de atividade do sistema: 22.20 minutos 
+Tempo de atividade do sistema: 2966.55 minutos 
 
