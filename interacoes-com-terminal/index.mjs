@@ -14,7 +14,7 @@ rl.on('data', (input) => { //método que faz parecido com o primeiro codigo, mas
 })
 */
 
-const readLine = require('node:readline') //consegue criar interface capaz de ler as linhas do terminal
+import readLine from 'node:readline' //consegue criar interface capaz de ler as linhas do terminal
 const rl = readLine.createInterface({ input: process.stdin, output: process.stdout })
 
 rl.question('Qual o seu nome? ', (answer) => { //qustion faz pergunta no terminal
