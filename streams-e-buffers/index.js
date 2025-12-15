@@ -1,16 +1,16 @@
-const fs = require('fs')
+const fs = require('node:fs')
 
-const streamLeitura = fs.createReadStream('texto.txt')
+const streamLeitura = fs.createReadStream('text.txt') //criando stream de leitura
 
 const buffer = []
 
-streamLeitura.on('data', chunk => {
+streamLeitura.on('data', chunk => { //add evento de data, chunck sao dados em pequenos pedaços
   buffer.push(chunk)
   console.log('Um chunk foi processado')
 })
 
-streamLeitura.on('end', () => {
-  console.log(`Buffer: \n ${buffer}`);
+streamLeitura.on('end', () => { //evento para quando finalizar a leitura
+  console.log('Buffer: ', buffer)
   const dadosCompletos = Buffer.concat(buffer).toString()
-  console.log(`Dados Completos: \n ${dadosCompletos}`)
+  console.log('Dados Completos: ', dadosCompletos)
 })
