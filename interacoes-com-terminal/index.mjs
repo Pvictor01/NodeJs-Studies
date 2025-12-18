@@ -19,12 +19,12 @@ const rl = readLine.createInterface({ input: process.stdin, output: process.stdo
 
 rl.question('Qual o seu nome? ', (answer) => { //qustion faz pergunta no terminal
   rl.write(`Olá ${answer}!\n`) //retorna com o valor do callback
-  rl.close() //encerra o question
+  rl.close() //encerra o readLine a nivel de interface(terminal)
 })    
 
 rl.on('close', () => {  //once() executa o processo apenas uma vez, evento close escuta o rl.close() acima
   rl.write(`Saindo...\n`)
-  process.exit(0) //encerra o processo no terminal
+  process.exit(0) //encerra o processo a nivel de sistema, força o encerramento imediato do processo no nodejs
 })
 
 /*rl.on('SIGINT', () => { //sigint (ctrl + c) quando interromper o processo
