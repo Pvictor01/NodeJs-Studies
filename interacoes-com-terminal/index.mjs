@@ -22,7 +22,7 @@ rl.question('Qual o seu nome? ', (answer) => { //qustion faz pergunta no termina
   rl.close() //encerra o question
 })    
 
-rl.on('close', () => {  //once executa o processo apenas uma vez
+rl.on('close', () => {  //once() executa o processo apenas uma vez, evento close escuta o rl.close() acima
   rl.write(`Saindo...\n`)
   process.exit(0) //encerra o processo no terminal
 })
