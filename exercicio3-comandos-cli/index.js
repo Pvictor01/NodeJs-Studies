@@ -18,11 +18,38 @@ function menuOptions() {
   return menu
 }
 
-rl.question(menuOptions(), (answer) => { //obs* write nao aceita callback
-  console.log(`Você escolheu a opção ${answer}`);
-  rl.close()
-}) 
+function createNote() {
+  let notations = {}
 
+  return rl.question(`Digite a anotação: `, (answer) => {
+    notations.note = answer
+    console.log(notations)
+    main()
+  })
+}
+
+function main() {
+  rl.question(menuOptions(), (answer) => { //obs* write nao aceita callback
+    console.log(`Você escolheu a opção ${answer}`)
+  
+    switch(answer) {
+      case '1':
+        createNote()
+        menuOptions()
+        break
+      case 2:
+        break
+      case 3:
+        break
+      case 4:
+        break
+      default:
+        console.log('Opção inválida')
+    }
+  }) 
+}
+
+main()
 
 rl.on('close', () => {
   process.exit(0)
