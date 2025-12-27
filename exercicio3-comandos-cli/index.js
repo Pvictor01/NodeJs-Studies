@@ -90,7 +90,3 @@ function main() {
 }
 
 main()
-
-rl.on('close', () => {
-  process.exit(0)
-})
