@@ -1,15 +1,11 @@
 import readLine from "node:readline"
-import fs from "node:fs"
-import { randomUUID } from "node:crypto"
-
-var NOTATION_DATABASE = []
 
 const rl = readLine.createInterface({
     input: process.stdin,
     output: process.stdout
 })
 
-function menuOptions(choiceCallback) {
+function menuOptions() {
   const menu = (`
               *** Menu ***
     Escolha uma das opções abaixo:\n
@@ -19,74 +15,43 @@ function menuOptions(choiceCallback) {
     - excluir uma anotação específica (4)\n
   `)
 
-  question(menu, choiceCallback)
+  return menu
 }
 
-function loadHistory() {
-  const filexists = fs.existsSync('history.json')
+function createNote() {
+  let notations = {}
 
-  if (!filexists) {
-    fs.writeFileSync('history.json', [])
-  }
-
-  fs.readFile("history.json", 'utf-8', (err, data) => {
-    if (err) {
-      return console.log(err)
-    } else {
-      NOTATION_DATABASE = JSON.parse(data)
-    }
+  return rl.question(`Digite a anotação: `, (answer) => {
+    notations.note = answer
+    console.log(notations)
+    main()
   })
-}
-
-function question(description, callback) {
-  rl.question(description, (answer) => {
-    callback(answer)
-  })
-}
-
-function createNote(answer, callback) {
-    let notation = {
-      notation: answer,
-      date: new Date(),
-      id: randomUUID()
-    }
-    NOTATION_DATABASE.push(notation)
-    fs.writeFileSync('history.json', JSON.stringify(NOTATION_DATABASE))
-    menuOptions(callback)
-}
-
-function listNotes(choiceCallback) {
-  NOTATION_DATABASE.forEach((content, _) => {
-    console.log(content)
-  })
-  menuOptions(choiceCallback)
-}
-
-function choiceCallback(answer) {
-    console.log()
-    console.log(`Você escolheu a opção ${answer}`)
-  
-    switch(answer) {
-      case '1':
-        question('Digite a anotação: ', createNote)
-        break
-      case '2':
-        listNotes(choiceCallback)
-        break
-      case '3':
-        console.log('Opção 3 nao disponivel ainda')
-        break
-      case '4':
-        console.log('Opção 4 nao disponivel ainda')
-        break
-      default:
-        console.log('Opção inválida')
-    }
 }
 
 function main() {
-  loadHistory()
-  question(menuOptions(choiceCallback), choiceCallback) 
+  rl.question(menuOptions(), (answer) => { //obs* write nao aceita callback
+    console.log(`Você escolheu a opção: ${answer}`)
+  
+    switch(answer) {
+      case '1':
+        createNote()
+        menuOptions()
+        break
+      case 2:
+        break
+      case 3:
+        break
+      case 4:
+        break
+      default:
+        console.log('Opção inválida')
+        breakLine()
+    }
+  }) 
 }
 
 main()
+
+function breakLine() {
+  rl.close()
+}
