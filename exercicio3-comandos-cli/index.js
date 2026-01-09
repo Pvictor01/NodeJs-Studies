@@ -24,6 +24,16 @@ function menuOptions() {
 function createNote() {
   return rl.question(`Digite a anotação: `, (answer) => {
     notations.push(answer)
+
+    fs.writeFile('history.txt', notations.toString(), (err) => {
+      if (err) {
+        console.log(err)
+        return
+      } else {
+        console.log('Arquivo criado com sucesso!')
+      }
+    })
+
     console.log(notations)
     main()
   })
