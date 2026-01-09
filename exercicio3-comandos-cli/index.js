@@ -1,9 +1,12 @@
 import readLine from "node:readline"
+import fs from "node:fs"
 
 const rl = readLine.createInterface({
     input: process.stdin,
     output: process.stdout
 })
+
+let notations = []
 
 function menuOptions() {
   const menu = (`
@@ -19,10 +22,8 @@ function menuOptions() {
 }
 
 function createNote() {
-  let notations = {}
-
   return rl.question(`Digite a anotação: `, (answer) => {
-    notations.note = answer
+    notations.push(answer)
     console.log(notations)
     main()
   })
