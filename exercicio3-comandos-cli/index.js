@@ -39,6 +39,17 @@ function createNote() {
   })
 }
 
+function listNotes() {
+  fs.readFile('history.txt', 'utf-8', (err, data) => {
+    if(err) {
+      console.log(err.message)
+    } else {
+      console.log(data)
+    }
+    main()
+  })
+}
+
 function main() {
   rl.question(menuOptions(), (answer) => { //obs* write nao aceita callback
     console.log(`Você escolheu a opção: ${answer}`)
@@ -46,11 +57,11 @@ function main() {
     switch(answer) {
       case '1':
         createNote()
-        menuOptions()
         break
-      case 2:
+      case '2':
+        listNotes()
         break
-      case 3:
+      case '3':
         break
       case 4:
         break
