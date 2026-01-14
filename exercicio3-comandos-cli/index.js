@@ -25,7 +25,7 @@ function createNote() {
   return rl.question(`Digite a anotação: `, (answer) => {
     notations.push(answer)
 
-    fs.writeFile('history.txt', notations.toString(), (err) => {
+    fs.writeFile('history.txt', JSON.stringify(notations), (err) => {
       if (err) {
         console.log(err)
         return
@@ -44,9 +44,38 @@ function listNotes() {
     if(err) {
       console.log(err.message)
     } else {
-      console.log(data)
+      try {
+        const notes = JSON.parse(data)
+        console.log(notes)
+      } catch (err) { //mostra o arquivo como esta, caso nao esteja em formato json valido
+        console.log(data)
+      }
     }
     main()
+  })
+}
+
+function readNote() {
+  rl.question(`Digite o posição da nota que deseja ler: `, (answer) => {
+    const index = parseInt(answer)
+
+    fs.readFile('history.txt', 'utf-8', (err, data) => {
+      if(err) {
+        console.log(err.message)
+      } else {
+        try {
+          const notes = JSON.parse(data)
+          if(index > 0 && index <= notes.length) {
+            console.log(notes[index - 1])
+          } else {
+            console.log('Posição inválida')
+          }
+        } catch (error) {
+          console.log('Erro ao ler a nota')
+        }
+      }
+      main()
+    })
   })
 }
 
@@ -62,6 +91,7 @@ function main() {
         listNotes()
         break
       case '3':
+        readNote()
         break
       case 4:
         break
