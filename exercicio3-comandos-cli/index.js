@@ -65,6 +65,7 @@ function readNote() {
       } else {
         try {
           const notes = JSON.parse(data)
+          
           if(index > 0 && index <= notes.length) {
             console.log(notes[index - 1])
           } else {
@@ -75,6 +76,42 @@ function readNote() {
         }
       }
       main()
+    })
+  })
+}
+
+function deleteNote() {
+  rl.question(`Digite a posição da nota que deseja excluir: `, (answer) => {
+    const index = parseInt(answer)
+
+    fs.readFile('history.txt', 'utf-8', (err, data) => {
+      if(err) {
+        console.log(err.message)
+        main()
+        return
+      } 
+
+      try {
+        const notes = JSON.parse(data)
+
+        if(index > 0 && index <= notes.length) {
+          notes.splice(index - 1, 1)
+          notations = notes
+
+          fs.writeFile('history.txt', JSON.stringify(notes), (err) => {
+            if (err) console.log(err)
+              else console.log('Nota excluida com sucesso!')
+              main()             
+          })
+        } else {
+          console.log('Posição inválida')
+          main()
+        }
+        
+      } catch (error) {
+        console.log('Erro ao ler a nota')
+        main()
+      }
     })
   })
 }
@@ -93,7 +130,8 @@ function main() {
       case '3':
         readNote()
         break
-      case 4:
+      case '4':
+        deleteNote()
         break
       default:
         console.log('Opção inválida')
