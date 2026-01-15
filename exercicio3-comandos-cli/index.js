@@ -31,11 +31,10 @@ function createNote() {
         return
       } else {
         console.log('Arquivo criado com sucesso!')
+        console.log(notations)
+        main()
       }
     })
-
-    console.log(notations)
-    main()
   })
 }
 
@@ -107,7 +106,6 @@ function deleteNote() {
           console.log('Posição inválida')
           main()
         }
-        
       } catch (error) {
         console.log('Erro ao ler a nota')
         main()
