@@ -16,6 +16,7 @@ function menuOptions() {
     - listar todas os arquivos salvos (2)\n
     - ler uma anotação específica (3)\n
     - excluir uma anotação específica (4)\n
+    - Sair (5)
   `)
 
   return menu
@@ -131,6 +132,10 @@ function main() {
       case '4':
         deleteNote()
         break
+      case '5':
+        console.log('Saindo...')
+        rl.close()
+        break        
       default:
         console.log('Opção inválida')
         breakLine()
