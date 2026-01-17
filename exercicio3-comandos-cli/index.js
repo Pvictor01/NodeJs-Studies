@@ -138,13 +138,9 @@ function main() {
         break        
       default:
         console.log('Opção inválida')
-        breakLine()
+        break
     }
   }) 
 }
 
 main()
-
-function breakLine() {
-  rl.close()
-}
