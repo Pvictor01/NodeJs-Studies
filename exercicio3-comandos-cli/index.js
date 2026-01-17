@@ -138,6 +138,7 @@ function main() {
         break        
       default:
         console.log('Opção inválida')
+        main()
         break
     }
   }) 
